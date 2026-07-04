@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventarioPro - Gestión</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">InventarioPro</a>
+            <div class="nav-menu">
+                <a href="login.html" class="nav-item">Salir</a>
+                <a href="inventario.html" class="nav-item">Inventario</a>
+                <a href="produccion.html" class="nav-item">Producción</a>
+                <a href="usuarios.html" class="nav-item">Usuarios</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>Agregar Nuevo Artículo</h2>
+            <p>Ingrese los detalles para actualizar el stock global de materias primas o productos terminados.</p>
+
+            <form id="producto-form" class="producto-form">
+                <div class="grupo">
+                    <label for="nombre">Nombre del Artículo</label>
+                    <input type="text" id="nombre" placeholder="Ej. Galleta Chocolate o Harina" required>
+                </div>
+
+                <div class="grupo">
+                    <label for="tipo-producto">¿Producto Terminado?</label>
+                    <select id="tipo-producto" required>
+                        <option value="no">No (Materia Prima)</option>
+                        <option value="si">Sí (Producto Terminado)</option>
+                    </select>
+                </div>
+
+                <div class="grupo">
+                    <label for="cantidad">Cantidad Inicial</label>
+                    <input type="number" id="cantidad" placeholder="0" required>
+                </div>
+
+                <div class="grupo">
+                    <label for="precio">Precio (USD)</label>
+                    <input type="number" step="0.01" id="precio" placeholder="0.00" required>
+                </div>
+
+                <div id="seccion-receta" style="display: none; grid-column: 1 / -1; background: #f8fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #2842d8; margin-top: 10px;">
+                    <strong style="display: block; margin-bottom: 5px; color: #1e293b;">Definir Receta / Ingredientes</strong>
+                    <p style="font-size: 13px; color: #64748b; margin-bottom: 10px;">Indique qué materias primas se consumen para fabricar una unidad.</p>
+                    
+                    <div id="contenedor-insumos"></div>
+                </div>
+
+                <button type="submit" class="btn-agregar" id="btnGuardar" style="grid-column: 1 / -1; margin-top: 15px;">
+                    Guardar Artículo
+                </button>
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="encabezado-tabla" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+                <div>
+                    <h2>Gestión de Inventario</h2>
+                    <p>Visualización en tiempo real de los registros almacenados en la base de datos.</p>
+                </div>
+                
+                <div class="grupo-busqueda" style="position: relative;">
+                    <span style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="input-buscar" placeholder="Buscar por nombre o ID...">
+                </div>
+            </div>
+
+            <div id="contenedor-tabla-componente"></div>
+
+            <div class="footer-tabla">
+                <span>Gestión de inventario activo</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="inventario.js"></script>
+</body>
+
+</html>

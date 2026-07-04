@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventarioPro - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="body-login">
+
+    <div class="logo">
+        <h1>
+            <i class="fa-solid fa-wave-square"></i>
+            InventarioACME
+        </h1>
+        <p>Gestión inteligente para tu negocio</p>
+    </div>
+
+    <div class="login-container">
+        <h2>Acceso al Sistema</h2>
+        <p class="descripcion">Ingresa tus datos para gestionar tu inventario en tiempo real.</p>
+
+        <form id="form-login">
+            <label>
+                <i class="fa-regular fa-user"></i>
+                Número de Identificación
+            </label>
+            <input type="text" id="identificacion" placeholder="Ej: 1010123456" required>
+
+            <div class="password-header">
+                <label>
+                    <i class="fa-solid fa-lock"></i>
+                    Contraseña
+                </label>
+            </div>
+            <input type="password" id="clave" placeholder="********" required>
+
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>

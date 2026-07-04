@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InventarioPro - Producción</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Inventario</a>
+            <div class="nav-menu">
+                <a href="login.html" class="nav-item">Salir</a>
+                <a href="inventario.html" class="nav-item">Inventario</a>
+                <a href="produccion.html" class="nav-item active">Producción</a>
+                <a href="usuarios.html" class="nav-item">Usuarios</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card card-produccion">
+            <h2>Orden de Producción</h2>
+            <p>Al procesar una orden, el sistema aumentará el stock del producto terminado y descontará automáticamente los ingredientes de la materia prima.</p>
+
+            <form id="form-produccion" class="producto-form-produccion">
+                <div class="grupo-produccion">
+                    <label for="select-producto-terminado">Seleccionar Producto a Fabricar:</label>
+                    <select id="select-producto-terminado" required>
+                        <option value="">-- Seleccione un Producto --</option>
+                    </select>
+                </div>
+
+                <div id="vista-receta" class="receta-box">
+                    <strong>Insumos necesarios por unidad:</strong>
+                    <ul id="lista-insumos-unidades" class="receta-lista"></ul>
+                </div>
+
+                <div class="grupo-produccion">
+                    <label for="cantidad-producir">Cantidad de Unidades a Producir:</label>
+                    <input type="number" id="cantidad-producir" placeholder="Ej: 50" min="1" required>
+                </div>
+
+                <button type="submit" class="btn-producir">
+                    Procesar Fabricación
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="produccion.js"></script>
+</body>
+</html>
