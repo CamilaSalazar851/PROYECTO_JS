@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventario - Usuarios</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Inventario</a>
+
+      <div class="nav-menu">
+        <a href="login.html" class="nav-item">Salir</a>
+        <a href="inventario.html" class="nav-item">Inventario</a>
+        <a href="produccion.html" class="nav-item active">Producción</a>
+        <a href="usuarios.html" class="nav-item">Usuarios</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h2>Registrar Nuevo Usuario</h2>
+      <p>Asigne una identificación, nombre completo y cargo.</p>
+
+      <form class="usuario-form" id="usuario-from">
+        <input type="text" id="identificacion" placeholder="Número de identificación" required />
+
+        <input type="text" id="nombre" placeholder="Nombre completo" required />
+
+        <input type="text" id="cargo" placeholder="Cargo / Rol" required />
+
+        <input type="password" id="password" placeholder="Contraseña" required />
+
+        <input type="password" id="confirmarPassword" placeholder="Confirmar contraseña" required />
+
+        <button type="submit" class="btn-agregar">Guardar Usuario</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Usuarios Registrados</h2>
+
+      <div id="contenedorTabla"></div>
+    </div>
+  </div>
+
+  <script src="componentes.js"></script>
+  <script src="usuario.js"></script>
+</body>
+
+</html>
