@@ -9,19 +9,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 formUsuario.addEventListener("submit", async (e) => {
   e.preventDefault();
+  let identificacion= document.getElementById("identificacion").value.trim();
+  let nombre= document.getElementById("nombre").value.trim();
+  let cargo= document.getElementById("cargo").value.trim();
+  const password = document.getElementById("password").value.trim();
+  const confirmarPassword = document.getElementById("confirmarPassword").value.trim();
 
-  const password = document.getElementById("password").value;
-  const confirmarPassword = document.getElementById("confirmarPassword").value;
-
+  if (nombre === "" || identificacion === "" || cargo === "" || password === "" || confirmarPassword=== ""){
+    alert("Los espacios no pueden estar vacios")
+    return
+}
   if (password !== confirmarPassword) {
       alert("Las contraseñas no coinciden");
       return;
   }
 
   const datosUsuario = {
-      identificacion: document.getElementById("identificacion").value,
-      nombre: document.getElementById("nombre").value,
-      cargo: document.getElementById("cargo").value,
+      identificacion: identificacion,
+      nombre: nombre,
+      cargo: cargo,
       password: password
   };
 

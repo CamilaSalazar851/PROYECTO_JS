@@ -43,7 +43,7 @@ function mostrarCamposReceta(recetaExistente = null) {
             divInsumo.style.gap = "15px";
             divInsumo.innerHTML = `
                 <span style="font-size: 14px; font-weight: 500; color: #334155;">${prod.nombre} (${codigo})</span>
-                <input type="number" class="input-receta-insumo" data-codigo="${codigo}" step="any" placeholder="Cantidad" value="${cantidadPrevia}" style="width: 120px; padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 6px;">
+                <input type="number" class="input-receta-insumo" data-codigo="${codigo}" step="1" placeholder="Cantidad" value="${cantidadPrevia}" style="width: 120px; padding: 6px 10px; border: 1px solid #d1d5db; border-radius: 6px;">
             `;
             contenedorInsumos.appendChild(divInsumo);
         }
@@ -139,10 +139,14 @@ productoForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const nombre = document.getElementById("nombre").value.trim();
-    const tipoProducto = tipoProductoSelect.value;
+    const tipoProducto = tipoProductoSelect.value.trim();
     const cantidad = parseInt(cantidadInput.value);
     const precio = parseFloat(document.getElementById("precio").value);
-
+    
+    if (nombre === "" || tipoProducto === "" || cantidad === "" || precio === ""){
+        alert("Los espacios no pueden estar vacios")
+        return
+    }
     const datosProducto = {
         nombre: nombre,
         productoTerminado: tipoProducto,
