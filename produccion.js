@@ -1,4 +1,6 @@
-const API_URL = "https://stock-flow-354d0-default-rtdb.firebaseio.com/productos";
+const BASE_URL = "https://stock-flow-354d0-default-rtdb.firebaseio.com";
+const API_URL = `${BASE_URL}/productos`;
+const PRODUCCIONES_URL = `${BASE_URL}/producciones`;
 const formProduccion = document.getElementById("form-produccion");
 const selectProducto = document.getElementById("select-producto-terminado");
 const txtCantidad = document.getElementById("cantidad-producir");
@@ -60,6 +62,39 @@ function mostrarRecetaItem() {
     vistaReceta.style.display = "block";
 }
 
+async function registrarProduccion(codigoPT, productoTerminado, cantidadAProducir, formula) {
+    const fechaActual = new Date();
+
+    const materiasPrimasConsumidas = Object.keys(formula).map(mpCodigo => {
+        const materiaPrima = productosBD[mpCodigo] || {};
+        return {
+            codigo: mpCodigo,
+            nombre: materiaPrima.nombre || mpCodigo,
+            cantidadConsumida: formula[mpCodigo] * cantidadAProducir
+        };
+    });
+
+    const registro = {
+        fecha: fechaActual.toISOString().slice(0, 10),
+        anio: fechaActual.getFullYear(),
+        mes: fechaActual.getMonth() + 1,
+        productoCodigo: codigoPT,
+        productoNombre: productoTerminado.nombre,
+        cantidadProducida: cantidadAProducir,
+        materiasPrimas: materiasPrimasConsumidas
+    };
+
+    try {
+        await fetch(`${PRODUCCIONES_URL}.json`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(registro)
+        });
+    } catch (error) {
+        console.error("Error al registrar la producción:", error);
+    }
+}
+
 formProduccion.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -115,6 +150,8 @@ formProduccion.addEventListener("submit", async (e) => {
             method: "PUT",
             body: JSON.stringify(nuevoStockPT)
         });
+
+        await registrarProduccion(codigoPT, productoTerminado, cantidadAProducir, formula);
 
         alert(`¡Producción exitosa! Se fabricaron ${cantidadAProducir} unidades de ${productoTerminado.nombre}.\nLas materias primas han sido descontadas correctamente del almacén.`);
         
